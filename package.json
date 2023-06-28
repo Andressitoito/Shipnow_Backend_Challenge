@@ -1,0 +1,24 @@
+{
+  "name": "shipnow_backend_challenge",
+  "version": "1.0.0",
+  "description": "Folder and files managing in console",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Andressitoito/Shipnow_Backend_Challenge.git"
+  },
+  "keywords": [
+    "challenge",
+    "shipnow",
+    "backend"
+  ],
+  "author": "Andres Ledesma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Andressitoito/Shipnow_Backend_Challenge/issues"
+  },
+  "homepage": "https://github.com/Andressitoito/Shipnow_Backend_Challenge#readme"
+}
