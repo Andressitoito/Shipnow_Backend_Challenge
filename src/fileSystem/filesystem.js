@@ -10,22 +10,31 @@ export function createFileSystem() {
 	};
 
 	const dir_1 = {
-		name: "dir_1",
+		name: "home",
+		type: "directory",
+		children: [],
+		parent: undefined,
+	};
+
+	const dir_2 = {
+		name: "desktop",
 		type: "directory",
 		children: [],
 		parent: undefined,
 	};
 
 	const file_1 = {
-		name: "file_1.txt",
+		name: "test_file",
 		type: "file",
-		size: 1024,
-		content: "file_1 content",
+		size: 44,
+		content: "This is the content of the test file",
 	};
 
 	dir_1.children.push(file_1);
 	dir_1.parent = rootDirectory;
+	dir_2.parent = rootDirectory;
 	rootDirectory.children.push(dir_1);
+	rootDirectory.children.push(dir_2);
 
 	const fileSystem = {
 		root: rootDirectory,
@@ -46,7 +55,7 @@ function getChildDirectory(directory, name) {
 	return directory.children.find((child) => child.name === name) || null;
 }
 
-export function cd(fileSystem, targetDir) {
+export function changeDirectory(fileSystem, targetDir) {
 	// Go to parent directory
 	if (targetDir === "..") {
 		if (fileSystem.currentDirectory !== fileSystem.root) {
@@ -132,4 +141,50 @@ export function create_folder(fileSystem, name) {
 		children: [],
 		parent: fileSystem.currentDirectory,
 	});
+}
+
+/////////////////////////////
+// SHOW DIRECTORY LIST
+/////////////////////////////
+export function list(fileSystem) {
+	const list = fileSystem.currentDirectory.children.reduce((acc, child) => {
+		if (child.type === "directory") {
+			return (acc += `/${child.name}       `);
+		} else if (child.type === "file") {
+			return (acc += `${child.name}.txt       `);
+		}
+	}, "");
+
+	return list;
+}
+
+/////////////////////////////
+// SHOW FOLDER PATH
+/////////////////////////////
+export function showPath(fileSystem) {
+	function getPath(node) {
+		if (node.parent) {
+			return getPath(node.parent) + node.name + "/";
+		} else {
+			return "root/";
+		}
+	}
+
+	const currentDirectory = fileSystem.currentDirectory;
+	const path = getPath(currentDirectory);
+
+	return console.log(path);
+}
+
+/////////////////////////////
+// DESTROY FOLDER / FILE
+/////////////////////////////
+export function destroy(filesystem, name) {
+	const filtered = filesystem.currentDirectory.children.filter(
+		(child) => child.name !== name
+	);
+
+	filesystem.currentDirectory.children = filtered;
+
+	return;
 }

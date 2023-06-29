@@ -1,10 +1,15 @@
 import {
+	ChangeDirectory,
+	Destroy,
+	List,
 	Metadata,
+	ShowPath,
 	createFile,
 	createFolder,
 	help,
+	quit,
 	showFile,
-} from "../lib/interactive_commands.js";
+} from "../lib/interactiveCommands.js";
 
 ////////////////////////////
 // MAIN COMMAND FUNCTION
@@ -12,6 +17,14 @@ import {
 export function runCommand(input) {
 	if (input === "quit") {
 		quit();
+	} else if (input.startsWith("ls")) {
+		List();
+	} else if (input.startsWith("whereami")) {
+		ShowPath();
+	} else if (input.startsWith("destroy ")) {
+		Destroy(input);
+	} else if (input.startsWith("cd ")) {
+		ChangeDirectory(input);
 	} else if (input.startsWith("show ")) {
 		showFile(input);
 	} else if (input.startsWith("metadata ")) {
@@ -20,8 +33,13 @@ export function runCommand(input) {
 		createFile(input);
 	} else if (input.startsWith("create_folder ")) {
 		createFolder(input);
-	} else if (input === "--help") {
+	} else if (input === "help") {
 		help();
+	} else if (input === "cd") {
+		console.log(
+			`This command requires an argument 'cd ..' or 'cd directory_name'
+			`
+		);
 	} else if (input === "metadata") {
 		console.log(
 			`This command requires an argument 
@@ -50,7 +68,7 @@ create_file "file_name" "content"
 		console.log(
 			`Command '${input}' not found
 			
-For a list of available commands try '--help'
+For a list of available commands try 'help'
 `
 		);
 	}
