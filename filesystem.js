@@ -1,7 +1,7 @@
 /////////////////////////////
 // CREATE MAIN FILE SYSTEM
 /////////////////////////////
-function createFileSystem() {
+export function createFileSystem() {
 	// Root directory
 	const rootDirectory = {
 		name: "/",
@@ -46,7 +46,7 @@ function getChildDirectory(directory, name) {
 	return directory.children.find((child) => child.name === name) || null;
 }
 
-function cd(fileSystem, targetDir) {
+export function cd(fileSystem, targetDir) {
 	// Go to parent directory
 	if (targetDir === "..") {
 		if (fileSystem.currentDirectory !== fileSystem.root) {
@@ -68,4 +68,54 @@ function cd(fileSystem, targetDir) {
 	}
 }
 
-module.exports = { createFileSystem, cd };
+/////////////////////////////
+// CREATE NEW FILE
+/////////////////////////////
+export function create_file(fileSystem, file_name, content) {
+	const file = fileSystem.currentDirectory.children.find(
+		(child) => child.type === "file" && child.name === file_name
+	);
+	if (file) {
+		return console.log(`This file name: "${file_name}" is already in use`);
+	}
+
+	const file_size = Buffer.byteLength(content, "utf8");
+	fileSystem.currentDirectory.children.push({
+		name: file_name,
+		type: "file",
+		size: file_size,
+		content: content,
+	});
+}
+
+/////////////////////////////
+// SHOW FILE
+/////////////////////////////
+export function show_file(fileSystem, file_name) {
+	const file = fileSystem.currentDirectory.children.find(
+		(child) => child.type === "file" && child.name === file_name
+	);
+	if (file) {
+		console.log(file);
+	} else {
+		console.log("File not found: ", file_name);
+	}
+}
+
+/////////////////////////////
+// CREATE NEW FOLDER
+/////////////////////////////
+export function create_folder(fileSystem, name) {
+	if (
+		fileSystem.currentDirectory.children.find((child) => child.name === name)
+	) {
+		return console.log(`This folder name: "${name}" is already in use`);
+	}
+
+	return fileSystem.currentDirectory.children.push({
+		name: name,
+		type: "directory",
+		children: [],
+		parent: fileSystem.currentDirectory,
+	});
+}
