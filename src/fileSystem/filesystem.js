@@ -89,9 +89,23 @@ export function create_file(fileSystem, file_name, content) {
 }
 
 /////////////////////////////
+// SHOW FILE CONTENT
+/////////////////////////////
+export function show(fileSystem, file_name) {
+	const file = fileSystem.currentDirectory.children.find(
+		(child) => child.type === "file" && child.name === file_name
+	);
+	if (file) {
+		console.log(`${file.name}: ${file.content}`);
+	} else {
+		console.log("File not found: ", file_name);
+	}
+}
+
+/////////////////////////////
 // SHOW FILE
 /////////////////////////////
-export function show_file(fileSystem, file_name) {
+export function metadata(fileSystem, file_name) {
 	const file = fileSystem.currentDirectory.children.find(
 		(child) => child.type === "file" && child.name === file_name
 	);
