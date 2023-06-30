@@ -12,18 +12,19 @@ function startConsole() {
 	const rl = readline.createInterface({
 		input: process.stdin,
 		output: process.stdout,
+		terminal: false
 	});
 
 	function promptCommand() {
 		// Ask a command to the user
-		rl.question("Write a command > ", (input) => {
-			// Pass to runCommand the input inserted by the user
+		rl.question(" > ", (input) => {
 			runCommand(input);
 
-			// Use resursion to ask for another command
+			// Use recursion to ask for another command
 			promptCommand();
 		});
 	}
+
 	promptCommand();
 }
 

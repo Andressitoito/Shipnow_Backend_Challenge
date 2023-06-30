@@ -27,10 +27,24 @@ export function quit() {
 	console.log("Exiting command prompt");
 	process.exit(0);
 }
+
+// CLEAR CONSOLE
+export function clearConsole() {
+	// Check if the current operating system is Windows
+	if (process.platform === 'win32') {
+			// For Windows, use the 'cls' command to clear the console
+			const { execSync } = require('child_process');
+			execSync('cls');
+	} else {
+			// For Unix-like systems (Mac, Linux), use the 'clear' command to clear the console
+			console.clear();
+	}
+}
+
 // CREATE FILE
 export function createFile(input) {
 	const file_name = input.split(" ")[1].replace(/['"]/g, "").trim();
-	const content = input.split(" ").slice(2).join(" ");
+	const content = input.split(" ").slice(2).join(" ").replace(/['"]/g, "").trim();
 
 	if (file_name === "" || content === "") {
 		return console.log(
@@ -104,5 +118,6 @@ show 'file_name'                    Show the content of a file in the current di
 destroy                             Permanently erase folders or files
 metadata                            Show metadata
 help                                Show list of available commands
+clear                               Clear the console
 quit                                End the CLI session`);
 }

@@ -4,6 +4,7 @@ import {
 	List,
 	Metadata,
 	ShowPath,
+	clearConsole,
 	createFile,
 	createFolder,
 	help,
@@ -17,6 +18,8 @@ import {
 export function runCommand(input) {
 	if (input === "quit") {
 		quit();
+	} else if (input.startsWith("clear")) {
+		clearConsole();
 	} else if (input.startsWith("ls")) {
 		List();
 	} else if (input.startsWith("whereami")) {
@@ -38,6 +41,12 @@ export function runCommand(input) {
 	} else if (input === "cd") {
 		console.log(
 			`This command requires an argument 'cd ..' or 'cd directory_name'
+			`
+		);
+	} else if (input === "destroy") {
+		console.log(
+			`This command requires an argument 
+destroy "file_name" or destroy "folder_name"
 			`
 		);
 	} else if (input === "metadata") {
