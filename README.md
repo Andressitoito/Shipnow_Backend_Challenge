@@ -61,6 +61,12 @@ Use these commands to interact with the file system and perform various operatio
 ![File delete](./public/readme/video%20examples/commands/destroy_file.gif)
 ![Folder delete](./public/readme/video%20examples/commands/destroy_folder.gif)
 
+### `clear`:
+
+- Clear the CLI.
+
+![Clear the CLI](./public/readme/video%20examples/commands/clear.gif)
+
 ### `help`:
 
 - Show a list of available commands.
@@ -77,4 +83,5 @@ Use these commands to interact with the file system and perform various operatio
 
 - Here is shown how is managed some of error handling and mispellings.
 
-![Quit CLI](./public/readme/video%20examples/error_handling/error_handling.gif)
+![Error handling](./public/readme/video%20examples/error_handling/error_handling.gif)
+destroy test
