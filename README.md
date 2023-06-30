@@ -28,7 +28,7 @@ Use these commands to interact with the file system and perform various operatio
 
 - Show the current directory.
 
-![Show current directory](./public/readme/video%20examples/commands/ls.gif)
+![Show current directory](./public/readme/video%20examples/commands/whereami.gif)
 
 ### `create_folder 'folder_name'`:
 
@@ -52,7 +52,7 @@ Use these commands to interact with the file system and perform various operatio
 
 - Show metadata of files and folders.
 
-![File metadata](./public/readme/video%20examples/commands/show_metadata.gif)
+![File metadata](./public/readme/video%20examples/commands/metadata_test_file.gif)
 
 ### `destroy`:
 
