@@ -12,7 +12,7 @@ function startConsole() {
 	const rl = readline.createInterface({
 		input: process.stdin,
 		output: process.stdout,
-		terminal: false
+		terminal: false,
 	});
 
 	function promptCommand() {
@@ -24,7 +24,7 @@ function startConsole() {
 			promptCommand();
 		});
 	}
-
+	
 	promptCommand();
 }
 
